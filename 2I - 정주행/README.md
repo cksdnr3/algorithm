@@ -1,3 +1,5 @@
+# Idea
+
 # Practice
 
 시간이 흘러 지구는 2100년이 되었고, 웹툰 마음의 소리는 10만회 이상을 연재하며 세계 기록을 매 번 갱신하고 있다. 대부분의 사람들에게 마음의 소리는 삶의 일부가 되었으며, 어린 학생들이 마음의 소리를 회차 순서에 맞게 쭉 정주행을 하는 모습을 쉽게 찾아 볼 수 있다.
@@ -20,3 +22,52 @@
 ### **출력 형식**
 
 승철이가 본 에피소드의 번호들이 연속적인 수열로 표현될 수 있다면 **`YES`**를 출력하고, 그렇지 않다면 **`NO`**를 출력한다.
+
+## Brute force
+
+```Java
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+
+public class Main {
+	public static final Scanner scanner = new Scanner(System.in);
+
+	/**
+	 * 배열의 N개의 원소가 연속적인 정수 수열로 표현될 수 있는지 판단하는 함수
+	 * @param data
+	 * @param n
+	 * @return
+	 */
+	public static boolean isConsecutive(int[] data, int n)
+	{
+		Arrays.sort(data);
+		for (int i = 0; i < n -1; i++)
+		{
+			if (data[i + 1] != data[i] + 1) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static void main(String[] args) throws Exception {
+		int n = scanner.nextInt();
+		int[] data = new int[n];
+		for(int i = 0 ; i < n ; i ++)
+		{
+			data[i] = scanner.nextInt();
+		}
+
+		boolean result = isConsecutive(data, n);
+
+		if(result)
+		{
+			System.out.println("YES");
+		}else{
+			System.out.println("NO");
+		}
+	}
+}
+```

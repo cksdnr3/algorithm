@@ -14,14 +14,12 @@ public class Main {
 	 */
 	public static boolean isConsecutive(int[] data, int n)
 	{
-		Arrays.sort(data);
-		for (int i = 0; i < n -1; i++) 
-		{
-			if (data[i + 1] != data[i] + 1) {
-				return false;
-			}
-		}
-		return true;
+		int max = Integer.MIN_VALUE;
+		int min = Integer.MAX_VALUE;
+		for (int el : data) max = Math.max(el, max);
+		for (int el : data) min = Math.min(el, min);
+	
+		return n - 2 == max - min - 1;
 	}
 
 	public static void main(String[] args) throws Exception {
