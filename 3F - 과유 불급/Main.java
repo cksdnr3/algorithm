@@ -18,15 +18,20 @@ public class Main {
 	public static Range getBestRange(int n, int m, int[] cards, Range[] ranges) {
 		Range answer = ranges[0];
 		
+		long[] rangeSum = new long[n + 1];
+		rangeSum[1] = cards[1];
+		for (int i = 2; i <= n; i++) {
+			rangeSum[i] = rangeSum[i - 1] + cards[i];
+		}
+		
+
 		for (int i = 0; i < m; i++) {
-			for (int j = ranges[i].left; j <= ranges[i].right; j++) {
-				ranges[i].totalPoint += cards[j];
-			}
-			if (ranges[i].totalPoint > answer.totalPoint) {
+			ranges[i].totalPoint = rangeSum[ranges[i].right] - rangeSum[ranges[i].left - 1];
+			if (answer.totalPoint < ranges[i].totalPoint) {
 				answer = ranges[i];
 			}
 		}
-
+		
 		return answer;
 	}
 
