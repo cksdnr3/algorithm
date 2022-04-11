@@ -59,5 +59,5 @@ class MathUtil
 			lcm = lcm * numbers[i] / getGCD(lcm, numbers[i]);
 		}
 		return lcm;
-	}
+	} 
 }
